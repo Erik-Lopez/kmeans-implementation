@@ -1,6 +1,5 @@
-import matplotlib.pyplot as plt
 from point import generate_points, generate_clusters, average_point_position
-from useful_stuff import cartesian_distance_between, index_of_smallest_value
+from useful_stuff import cartesian_distance_between, index_of_smallest_value, plot
 
 def calibrate_positions_of_clusters(points, clusters, assignation_table):
     # Recolocar cada cluster
@@ -33,7 +32,7 @@ def assign_cluster_to_each_point(points, clusters, distance_between):
 
     return assignation_table
 
-def get_clusters_by_kmeans(points: list, clusters: list, distance_function, k=2, iterations=100):
+def get_clusters_by_kmeans(points: list, clusters: list, distance_function, k=2, iterations=10):
     if iterations == 0:
         return clusters
 
@@ -42,6 +41,8 @@ def get_clusters_by_kmeans(points: list, clusters: list, distance_function, k=2,
     assignation_table = assign_cluster_to_each_point(points, clusters, distance_function)
 
     calibrate_positions_of_clusters(points, clusters, assignation_table)
+
+    plot(points, clusters, should_show_images=True, should_save_images=True)
 
     # Re-ejecutar la función con nuevos clusters
     return get_clusters_by_kmeans(points, clusters, distance_function, iterations=iterations-1)
@@ -53,16 +54,7 @@ def main(amount_of_points, k, distance_function):
 
     clusters = get_clusters_by_kmeans(points, clusters, distance_function, k)
 
-    points_x_values = [point[0] for point in points]
-    points_y_values = [point[1] for point in points]
-
-    clusters_x_values = [cluster[0] for cluster in clusters]
-    clusters_y_values = [cluster[1] for cluster in clusters]
-
-    plt.scatter(x = points_x_values, y=points_y_values)
-    plt.scatter(x = clusters_x_values, y=clusters_y_values)
-
-    plt.show()
+    plot(points, clusters, should_show_images=True, should_save_images=False)
 
 if __name__ == "__main__": 
     amount_of_points = 10

@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import os
+
 def cartesian_distance_between(p1, p2):
     dx = p1[0] - p2[0]
     dy = p1[1] - p2[1]
@@ -16,3 +19,23 @@ def index_of_smallest_value(array):
 
 def average(X):
     return sum(X) / len(X)
+
+def plot(points, clusters, should_show_images=False, should_save_images=False):
+    points_x_values = [point[0] for point in points]
+    points_y_values = [point[1] for point in points]
+
+    clusters_x_values = [cluster[0] for cluster in clusters]
+    clusters_y_values = [cluster[1] for cluster in clusters]
+
+    plt.scatter(x = points_x_values, y=points_y_values)
+    plt.scatter(x = clusters_x_values, y=clusters_y_values)
+
+    if should_show_images:
+        plt.show()
+    
+    if should_save_images:
+        i = 0
+        while os.path.exists(f"./plots/image-{i}.png"):
+            i += 1
+
+        plt.savefig(f"./plots/image-{i}.png")
