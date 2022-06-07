@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 from point import generate_points, generate_clusters, average_point_position
 from useful_stuff import cartesian_distance_between, index_of_smallest_value
 
@@ -51,6 +52,10 @@ def main(amount_of_points, k, distance_function):
     clusters = generate_clusters(points, k)
 
     clusters = get_clusters_by_kmeans(points, clusters, distance_function, k)
+
+    plt.scatter(points, y=[0 for _ in points])
+    plt.scatter(clusters, y=[0 for _ in clusters])
+    plt.show()
 
 if __name__ == "__main__": 
     amount_of_points = 10
