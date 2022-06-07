@@ -1,5 +1,5 @@
 from point import generate_points, generate_clusters
-from useful_stuff import cartesian_distance_between, get_index_of_smallest_value
+from useful_stuff import cartesian_distance_between, index_of_smallest_value
 
 def calibrate_positions_of_clusters(points, clusters, assignation_table):
     # Recolocar cada cluster
@@ -27,7 +27,7 @@ def assign_cluster_to_each_point(points, clusters, distance_between):
 
             # calcular distancias
 
-        cluster_index = get_index_of_smallest_value(distances)
+        cluster_index = index_of_smallest_value(distances)
         assignation_table.append(cluster_index)
 
     return assignation_table
