@@ -43,7 +43,7 @@ def get_clusters_by_kmeans(points: list, clusters: list, distance_function, k=2,
     calibrate_positions_of_clusters(points, clusters, assignation_table)
 
     # Re-ejecutar la función con nuevos clusters
-    get_clusters_by_kmeans(points, clusters, iterations=iterations-1)
+    return get_clusters_by_kmeans(points, clusters, distance_function, iterations=iterations-1)
     
 
 def main(amount_of_points, k, distance_function):
