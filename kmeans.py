@@ -53,8 +53,15 @@ def main(amount_of_points, k, distance_function):
 
     clusters = get_clusters_by_kmeans(points, clusters, distance_function, k)
 
-    plt.scatter(points, y=[0 for _ in points])
-    plt.scatter(clusters, y=[0 for _ in clusters])
+    points_x_values = [point[0] for point in points]
+    points_y_values = [point[1] for point in points]
+
+    clusters_x_values = [cluster[0] for cluster in clusters]
+    clusters_y_values = [cluster[1] for cluster in clusters]
+
+    plt.scatter(x = points_x_values, y=points_y_values)
+    plt.scatter(x = clusters_x_values, y=clusters_y_values)
+
     plt.show()
 
 if __name__ == "__main__": 
