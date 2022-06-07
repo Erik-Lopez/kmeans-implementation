@@ -10,3 +10,6 @@ def index_of_smallest_value(array):
             smallest_element[1] = element
     
     return smallest_element[0] 
+
+def average(X):
+    return sum(X) / len(X)

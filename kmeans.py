@@ -1,4 +1,4 @@
-from point import generate_points, generate_clusters
+from point import generate_points, generate_clusters, average_point_position
 from useful_stuff import cartesian_distance_between, index_of_smallest_value
 
 def calibrate_positions_of_clusters(points, clusters, assignation_table):
