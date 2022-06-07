@@ -35,6 +35,9 @@ def plot(points, clusters, should_show_images=False, should_save_images=False):
     
     if should_save_images:
         i = 0
+        if not os.path.exists("./plots/"):
+            os.mkdir("./plots/")
+
         while os.path.exists(f"./plots/image-{i}.png"):
             i += 1
 
