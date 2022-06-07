@@ -2,11 +2,11 @@ import random
 
 from useful_stuff import average
 
-def generate_points(amount_of_points):
+def generate_points(amount_of_points, point_range):
     points = []
 
     for _ in range(amount_of_points):
-        point = [random.uniform(0, 10), random.uniform(0, 10)]
+        point = [random.uniform(0, point_range), random.uniform(0, point_range)]
         points.append(point)
 
     return points

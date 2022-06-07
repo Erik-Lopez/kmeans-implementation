@@ -42,14 +42,14 @@ def get_clusters_by_kmeans(points: list, clusters: list, distance_function, k=2,
 
     calibrate_positions_of_clusters(points, clusters, assignation_table)
 
-    plot(points, clusters, should_show_images=True, should_save_images=True)
+    plot(points, clusters, should_show_images=False, should_save_images=True)
 
     # Re-ejecutar la función con nuevos clusters
     return get_clusters_by_kmeans(points, clusters, distance_function, iterations=iterations-1)
     
 
-def main(amount_of_points, k, distance_function):
-    points = generate_points(amount_of_points)
+def main(amount_of_points, k, distance_function, point_range):
+    points = generate_points(amount_of_points, point_range)
     clusters = generate_clusters(points, k)
 
     clusters = get_clusters_by_kmeans(points, clusters, distance_function, k)
@@ -57,8 +57,9 @@ def main(amount_of_points, k, distance_function):
     plot(points, clusters, should_show_images=True, should_save_images=False)
 
 if __name__ == "__main__": 
-    amount_of_points = 10
-    k = 2
+    amount_of_points = int(input("How many points? -> "))
+    k = int(input("How many clusters? -> "))
+    point_range = int(input("How separated will they be? -> "))
     distance_function = cartesian_distance_between
 
-    main(amount_of_points, k, distance_function)
+    main(amount_of_points, k, distance_function, point_range)
