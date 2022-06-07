@@ -1,4 +1,4 @@
-from point import generate_points
+from point import generate_points, generate_clusters
 
 def calibrate_positions_of_clusters(points, clusters, assignation_table):
     # Recolocar cada cluster
@@ -12,6 +12,24 @@ def calibrate_positions_of_clusters(points, clusters, assignation_table):
         average_of_points_for_corresponding_cluster = average_point_position(points_for_corresponding_cluster)
 
         clusters[index_of_cluster] = average_of_points_for_corresponding_cluster
+
+def assign_cluster_to_each_point(points, clusters):
+    assignation_table = []
+
+    # Comprobar la distancia de cada punto a cada cluster
+    for index_of_point,point in enumerate(points):
+        distances = []
+
+        for index_of_cluster,cluster in enumerate(clusters):
+            distance = distance_between(point, cluster) 
+            distances.append(distance)
+
+            # calcular distancias
+
+        cluster_index = get_index_of_greatest_value(distances)
+        assignation_table.append(cluster_index)
+
+    return assignation_table
 
 def get_clusters_by_kmeans(points: list, clusters: list, k=2, iterations=100):
     if iterations == 0:
@@ -27,13 +45,14 @@ def get_clusters_by_kmeans(points: list, clusters: list, k=2, iterations=100):
     get_clusters_by_kmeans(points, clusters, iterations=iterations-1)
     
 
-def main(amount_of_points):
+def main(amount_of_points, k):
     points = generate_points(amount_of_points)
-    clusters = generate_clusters(points)
+    clusters = generate_clusters(points, k)
 
-    clusters = get_clusters_by_kmeans(points, clusters)
+    clusters = get_clusters_by_kmeans(points, clusters, k)
 
 if __name__ == "__main__": 
     amount_of_points = 10
+    k = 2
 
-    main(amount_of_points)
+    main(amount_of_points, k)
