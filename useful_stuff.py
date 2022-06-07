@@ -1,5 +1,8 @@
 def cartesian_distance_between(p1, p2):
-    return ((p1 - p2)**2)**0.5
+    dx = p1[0] - p2[0]
+    dy = p1[1] - p2[1]
+
+    return (dx**2 + dy**2)**0.5
 
 def index_of_smallest_value(array):
     smallest_element = [0, float("inf")]
